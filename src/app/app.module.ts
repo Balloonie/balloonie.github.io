@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MusicQuizModule } from './music-quiz/music-quiz.module';
+import { PlayerTrackerModule } from './player-tracker/player-tracker.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { MusicQuizModule } from './music-quiz/music-quiz.module';
     BrowserAnimationsModule,
 
     MusicQuizModule,
+    PlayerTrackerModule,
 
     MatListModule,
     MatSidenavModule

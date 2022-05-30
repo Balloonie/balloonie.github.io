@@ -1,5 +1,5 @@
 <mat-drawer-container class="sidebar-container">
-    <mat-drawer mode="side" opened class="sidenav">
+    <mat-drawer mode="side" opened class="sidebars-background-color">
         <mat-nav-list class="navigation">
             <a mat-list-item routerLink="/music">Musikquiz</a>
             <a mat-list-item routerLink="/">Testquiz</a>
@@ -7,7 +7,11 @@
             <a mat-list-item routerLink="/">Aufrufen</a>
         </mat-nav-list>
     </mat-drawer>
-    <mat-drawer-content class="content">
-        <router-outlet></router-outlet>
+    <mat-drawer-content class="content-background-color">
+        <div class="wrapper">
+            <router-outlet></router-outlet>
+            <div class="push"></div>
+        </div>
+        <app-player-tracker></app-player-tracker>
     </mat-drawer-content>
 </mat-drawer-container>

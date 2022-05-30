@@ -8,14 +8,6 @@ mat-drawer {
     width: 200px;
 }
 
-.sidenav {
-    background-color: #312450;
-}
-
-.content {
-    background-color: #5e42a6;
-}
-
 .navigation {
     top: 20%;
 }
@@ -23,4 +15,15 @@ mat-drawer {
 .mat-list-item {
     margin: 25px 8px 8px 0;
     width: 100%;
+}
+
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -150px;
+}
+
+.push {
+    height: 150px;
 }

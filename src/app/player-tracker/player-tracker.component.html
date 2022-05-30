@@ -1,0 +1,12 @@
+<div class="bottom">
+    <mat-grid-list cols="3" rowHeight="150px">
+        <mat-grid-tile *ngFor="let player of players">
+            <div class="playername">{{player.name}}</div>
+            <div class="points">{{player.points}}</div>
+            <div class="points-management">
+                <button mat-button (click)="addPoint(player.id)"><mat-icon>add</mat-icon></button>
+                <button mat-button (click)="removePoint(player.id)"><mat-icon>remove</mat-icon></button>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
