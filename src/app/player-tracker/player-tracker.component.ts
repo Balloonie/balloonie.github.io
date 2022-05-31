@@ -32,7 +32,9 @@ export class PlayerTrackerComponent implements OnInit {
     const player = this.players.find((obj) => {
       return obj.id === id;
     });
-    player!.points -= 1; 
+    if (player!.points > 0) {
+      player!.points -= 1; 
+    }
   }
 
 }
