@@ -1,13 +1,19 @@
 <div class="bottom">
     <mat-grid-list cols="3" rowHeight="150px">
         <mat-grid-tile *ngFor="let player of players">
-            <div fxLayout="column" fxLayoutAlign="space-around center">
-                <div class="playername">{{player.name}}</div>
-                <div class="points">{{player.points}}</div>
-                <div class="points-management" fxLayoutAlign="center">
-                    <button mat-raised-button color="accent" (click)="addPoint(player.id)"><mat-icon>add</mat-icon></button>
-                    <button mat-raised-button color="accent" (click)="removePoint(player.id)"><mat-icon>remove</mat-icon></button>
-                </div>
+            <div>
+                <section>
+                    <div class="playername">{{player.name}}</div>
+                </section>
+                <section>
+                    <div class="points">{{player.points}}</div>
+                </section>
+                <section>
+                    <div>
+                        <button mat-raised-button color="accent" (click)="addPoint(player.id)"><mat-icon>add</mat-icon></button>
+                        <button mat-raised-button color="accent" (click)="removePoint(player.id)"><mat-icon>remove</mat-icon></button>
+                    </div>
+                </section>
             </div>
         </mat-grid-tile>
     </mat-grid-list>

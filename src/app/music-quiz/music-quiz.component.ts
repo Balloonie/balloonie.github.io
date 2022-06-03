@@ -7,9 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MusicQuizComponent implements OnInit {
 
-  songs = [
-    {id: 1, song: "/assets/test.wav"},
-    {id: 2, song: "/assets/test2.wav"}
+  current?: Record;
+  showAnswer = false;
+
+  records: Record[] = [
+    {id: 1, record: "/assets/test.wav", question: "Hallo", answer: "Bla"},
+    {id: 2, record: "/assets/test.wav", question: "Test", answer: "Bla"},
+    {id: 3, record: "/assets/test.wav", question: "Test", answer: "Bla"},
+    {id: 4, record: "/assets/test.wav", question: "Test", answer: "Bla"},
+    {id: 5, record: "/assets/test.wav", question: "Test", answer: "Bla"},
+    {id: 6, record: "/assets/test.wav", question: "Test", answer: "Bla"},
+    {id: 7, record: "/assets/test.wav", question: "Test", answer: "Bla"},
+    {id: 8, record: "/assets/test.wav", question: "Test", answer: "Bla"},
+    {id: 9, record: "/assets/test.wav", question: "Test", answer: "Bla"},
+    {id: 10, record: "/assets/test.wav", question: "Test", answer: "Bla"},
+    {id: 11, record: "/assets/test.wav", question: "Test", answer: "Bla"},
+    {id: 12, record: "/assets/test.wav", question: "Test", answer: "Bla"},
+    {id: 13, record: "/assets/test.wav", question: "Test", answer: "Bla"},
   ];
 
   audio = new Audio();
@@ -21,24 +35,43 @@ export class MusicQuizComponent implements OnInit {
   }
 
   play(): void {
-    this.audio.play();
+    if (this.current != null) {
+      this.audio.play();
+    }
   }
 
   pause(): void {
-    this.audio.pause();
+    if (this.current != null) {
+      this.audio.pause();
+    }
   }
 
   stop(): void {
-    this.audio.load();
+    if (this.current != null) {
+      this.audio.load();
+    }
+  }
+
+  solve(): void {
+    this.showAnswer = true;
   }
 
   load(id: number): void {
+    this.showAnswer = false;
     this.stop();
-    const song = this.songs.find((obj) => {
+    const record = this.records.find((obj) => {
       return obj.id === id;
     });
-    this.audio.src = song!.song;
+
+    this.current = record;
+    this.audio.src = record!.record;
     this.audio.load();
   }
+}
 
+type Record = {
+  id: number;
+  record: string;
+  question: string;
+  answer: string;
 }

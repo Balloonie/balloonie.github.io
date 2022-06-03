@@ -1,25 +1,44 @@
 
 
-<div>
-  <button mat-button *ngFor="let song of songs" (click)="load(song.id)">{{song.id}}</button>
-</div>
+<section>
+  <div>
+    <p class="textline">{{current?.question}}</p>
+  </div>
+</section>
 
-<div class="example-button-row">
-  <div class="example-flex-container">
-    <div class="example-button-container">
-      <button mat-fab color="accent" (click)="play()">
-        <mat-icon>play_arrow</mat-icon>
-      </button>
-    </div>
-    <div class="example-button-container">
-      <button mat-fab color="accent" (click)="pause()">
-        <mat-icon>pause</mat-icon>
-      </button>
-    </div>
-    <div class="example-button-container">
-      <button mat-fab color="accent" (click)="stop()">
-        <mat-icon>stop</mat-icon>
-      </button>
+<section>
+  <div class="button-row">
+    <button mat-raised-button color="primary" *ngFor="let record of records" (click)="load(record.id)">{{record.id}}</button>
+  </div>
+</section>
+
+<section>
+  <div class="button-row">
+    <div class="flex-container">
+      <div class="button-container">
+        <button mat-fab color="accent" (click)="play()">
+          <mat-icon>play_arrow</mat-icon>
+        </button>
+      </div>
+      <div class="button-container">
+        <button mat-fab color="accent" (click)="pause()">
+          <mat-icon>pause</mat-icon>
+        </button>
+      </div>
+      <div class="button-container">
+        <button mat-fab color="accent" (click)="stop()">
+          <mat-icon>stop</mat-icon>
+        </button>
+      </div>
+      <div class="button-container">
+        <button mat-fab color="accent" (click)="solve()">
+          <mat-icon>output</mat-icon>
+        </button>
+      </div>
     </div>
   </div>
-</div>
+</section>
+
+<section *ngIf="showAnswer">
+  <p class="textline">{{current?.answer}}</p>
+</section>
