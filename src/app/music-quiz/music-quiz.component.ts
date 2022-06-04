@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { MusicDataProvider, Record } from '../dataprovider/MusicDataProvider';
 
 @Component({
   selector: 'app-music-quiz',
@@ -10,29 +12,20 @@ export class MusicQuizComponent implements OnInit {
   current?: Record;
   showAnswer = false;
 
-  records: Record[] = [
-    {id: 1, record: "/assets/test.wav", question: "Hallo", answer: "Bla"},
-    {id: 2, record: "/assets/test.wav", question: "Test", answer: "Bla"},
-    {id: 3, record: "/assets/test.wav", question: "Test", answer: "Bla"},
-    {id: 4, record: "/assets/test.wav", question: "Test", answer: "Bla"},
-    {id: 5, record: "/assets/test.wav", question: "Test", answer: "Bla"},
-    {id: 6, record: "/assets/test.wav", question: "Test", answer: "Bla"},
-    {id: 7, record: "/assets/test.wav", question: "Test", answer: "Bla"},
-    {id: 8, record: "/assets/test.wav", question: "Test", answer: "Bla"},
-    {id: 9, record: "/assets/test.wav", question: "Test", answer: "Bla"},
-    {id: 10, record: "/assets/test.wav", question: "Test", answer: "Bla"},
-    {id: 11, record: "/assets/test.wav", question: "Test", answer: "Bla"},
-    {id: 12, record: "/assets/test.wav", question: "Test", answer: "Bla"},
-    {id: 13, record: "/assets/test.wav", question: "Test", answer: "Bla"},
-  ];
+  records: Record[] = [];
 
   audio = new Audio();
 
-  constructor() { }
+  constructor(
+    private dataProvider: MusicDataProvider,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    
-  }
+    this.activatedRoute.params.subscribe(parameter => {
+      console.log(parameter['id']);
+      this.records = this.dataProvider.getRecords(parameter['id']);
+    })
+  };
 
   play(): void {
     if (this.current != null) {
@@ -67,11 +60,4 @@ export class MusicQuizComponent implements OnInit {
     this.audio.src = record!.record;
     this.audio.load();
   }
-}
-
-type Record = {
-  id: number;
-  record: string;
-  question: string;
-  answer: string;
 }

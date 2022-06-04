@@ -1,7 +1,7 @@
 <mat-drawer-container class="sidebar-container">
     <mat-drawer mode="side" opened class="sidebars-background-color">
         <mat-nav-list class="navigation">
-            <a mat-list-item routerLink="/music">Musikquiz</a>
+            <a mat-list-item [routerLink]="['/music', 1]">Wer ist das?</a>
             <a mat-list-item routerLink="/">Testquiz</a>
             <a mat-list-item routerLink="/">Namenstage</a>
             <a mat-list-item routerLink="/">Aufrufen</a>

@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MusicQuizComponent } from './music-quiz/music-quiz.component';
 
 const routes: Routes =[
-  { path: 'music', component: MusicQuizComponent }
+  { path: 'music/:id', component: MusicQuizComponent }
 ];
 
 @NgModule({
