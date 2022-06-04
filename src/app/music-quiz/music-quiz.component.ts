@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MusicDataProvider, Record } from '../dataprovider/MusicDataProvider';
 
@@ -7,7 +7,7 @@ import { MusicDataProvider, Record } from '../dataprovider/MusicDataProvider';
   templateUrl: './music-quiz.component.html',
   styleUrls: ['./music-quiz.component.scss']
 })
-export class MusicQuizComponent implements OnInit {
+export class MusicQuizComponent implements OnInit, OnDestroy {
 
   current?: Record;
   showAnswer = false;
@@ -26,6 +26,10 @@ export class MusicQuizComponent implements OnInit {
       this.records = this.dataProvider.getRecords(parameter['id']);
     })
   };
+
+  ngOnDestroy(): void {
+    this.stop();
+  }
 
   play(): void {
     if (this.current != null) {
