@@ -13,6 +13,7 @@ export class MusicQuizComponent implements OnInit, OnDestroy {
   showAnswer = false;
 
   records: Record[] = [];
+  audioAnswer = false;
 
   audio = new Audio();
 
@@ -22,7 +23,7 @@ export class MusicQuizComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(parameter => {
-      console.log(parameter['id']);
+      this.audioAnswer = parameter['id'] === "3";
       this.records = this.dataProvider.getRecords(parameter['id']);
     })
   };
@@ -51,6 +52,10 @@ export class MusicQuizComponent implements OnInit, OnDestroy {
 
   solve(): void {
     this.showAnswer = true;
+    if (this.audioAnswer) {
+      this.loadAnswer();
+      this.play();
+    }
   }
 
   load(id: number): void {
@@ -62,6 +67,12 @@ export class MusicQuizComponent implements OnInit, OnDestroy {
 
     this.current = record;
     this.audio.src = record!.record;
+    this.audio.load();
+  }
+
+  loadAnswer(): void {
+    this.stop();
+    this.audio.src = this.current!.link;
     this.audio.load();
   }
 }
