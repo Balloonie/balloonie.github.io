@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { MusicDataProvider, Record } from '../dataprovider/MusicDataProvider';
 
 @Component({
@@ -19,9 +19,17 @@ export class MusicQuizComponent implements OnInit, OnDestroy {
 
   constructor(
     private dataProvider: MusicDataProvider,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.stop();
+        this.unload();
+        this.showAnswer = false;
+      }
+    })
     this.activatedRoute.params.subscribe(parameter => {
       this.audioAnswer = parameter['id'] === "3";
       this.records = this.dataProvider.getRecords(parameter['id']);
@@ -30,6 +38,7 @@ export class MusicQuizComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.stop();
+    this.unload();
   }
 
   play(): void {
@@ -48,6 +57,11 @@ export class MusicQuizComponent implements OnInit, OnDestroy {
     if (this.current != null) {
       this.audio.load();
     }
+  }
+
+  unload(): void {
+    this.audio.src = "";
+    this.current = undefined;
   }
 
   solve(): void {

@@ -8,11 +8,13 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MusicQuizModule } from './music-quiz/music-quiz.module';
 import { PlayerTrackerModule } from './player-tracker/player-tracker.module';
+import { RulesComponent } from './rules/rules.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RulesComponent
   ],
   imports: [
     BrowserModule,

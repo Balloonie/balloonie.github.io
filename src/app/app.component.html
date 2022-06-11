@@ -1,6 +1,7 @@
 <mat-drawer-container class="sidebar-container">
     <mat-drawer mode="side" opened class="sidebars-background-color">
         <mat-nav-list class="navigation">
+            <a mat-list-item [routerLink]="['/rules']">Regeln</a>
             <a mat-list-item [routerLink]="['/music', 1]">Wer ist das?</a>
             <a mat-list-item [routerLink]="['/music', 2]">Woher kommt das?</a>
             <a mat-list-item [routerLink]="['/music', 3]">Welcher Song ist das?</a>
